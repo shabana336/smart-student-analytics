@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Analysis System</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/app.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">ACADEMIC MANAGEMENT</p>
+            <h1>Student Performance</h1>
+            <p>Monitor students, attendance and academic progress.</p>
+        </div>
+        <button id="refreshButton" class="secondary-button" type="button">
+            Refresh Dashboard
+        </button>
+    </header>
+
+    <main class="container">
+        <p id="message" role="status" aria-live="polite"></p>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span>Total Students</span>
+                <h2 id="totalStudents">0</h2>
+            </article>
+            <article class="stat-card">
+                <span>Class Average</span>
+                <h2 id="classAverage">0%</h2>
+            </article>
+            <article class="stat-card">
+                <span>Attendance Rate</span>
+                <h2 id="attendance">0%</h2>
+            </article>
+            <article class="stat-card">
+                <span>Exam Records</span>
+                <h2 id="totalResults">0</h2>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Add a Student</h2>
+                    <p>Enter the student's basic information.</p>
+                </div>
+            </div>
+
+            <form id="studentForm" class="form-grid">
+                <label>
+                    Full Name
+                    <input id="name" name="name" required maxlength="100"
+                           placeholder="Enter full name">
+                </label>
+
+                <label>
+                    Email Address
+                    <input id="email" name="email" type="email" required
+                           placeholder="student@example.com">
+                </label>
+
+                <label>
+                    Course
+                    <input id="course" name="course" required maxlength="100"
+                           placeholder="MCA">
+                </label>
+
+                <button type="submit">Add Student</button>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Student Records</h2>
+                    <p>Manage registered students.</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable">
+                        <tr><td colspan="5">Loading students...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Record Examination Marks</h2>
+                    <p>Enter marks for a registered student.</p>
+                </div>
+            </div>
+
+            <form id="resultForm" class="form-grid">
+                <label>
+                    Student ID
+                    <input id="resultStudentId" type="number" min="1"
+                           required placeholder="For example, 1">
+                </label>
+
+                <label>
+                    Subject
+                    <input id="subject" required maxlength="100"
+                           placeholder="Computer Networks">
+                </label>
+
+                <label>
+                    Marks Obtained
+                    <input id="marksObtained" type="number" min="0"
+                           step="0.01" required placeholder="85">
+                </label>
+
+                <label>
+                    Maximum Marks
+                    <input id="maxMarks" type="number" min="0.01"
+                           step="0.01" required value="100">
+                </label>
+
+                <button type="submit">Save Result</button>
+            </form>
+        </section>
+
+        <section class="charts-grid">
+            <article class="panel chart-panel">
+                <h2>Subject-wise Average</h2>
+                <canvas id="subjectChart"></canvas>
+            </article>
+
+            <article class="panel chart-panel">
+                <h2>Student Performance</h2>
+                <canvas id="studentChart"></canvas>
+            </article>
+
+            <article class="panel chart-panel">
+                <h2>Grade Distribution</h2>
+                <canvas id="distributionChart"></canvas>
+            </article>
+        </section>
+
+        <p id="chartMessage" class="muted" role="status"></p>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h2>Examination Results</h2>
+                    <p>View marks and calculated percentages.</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Maximum</th>
+                            <th>Percentage</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTable">
+                        <tr><td colspan="6">Loading results...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Student Performance Analysis System · College Project</p>
+    </footer>
+</body>
+</html>
