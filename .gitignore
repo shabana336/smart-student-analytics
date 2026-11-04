@@ -1,0 +1,5 @@
+.venu/
+.pytest_cache/
+*.pyc
+*.db
+.env
